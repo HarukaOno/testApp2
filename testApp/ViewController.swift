@@ -44,7 +44,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         let titleLabel: UILabel = UILabel(frame: CGRectMake(0,0,200,50))
-        titleLabel.backgroundColor = UIColor.orangeColor()
+        titleLabel.backgroundColor = UIColor.blueColor() //変更
         titleLabel.text = "あなたの運勢は．．．"
         titleLabel.textAlignment = NSTextAlignment.Center
         titleLabel.layer.position = CGPoint(x: self.view.bounds.width / 2, y: 200)
