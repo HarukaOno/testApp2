@@ -13,32 +13,14 @@ class ViewController: UIViewController {
     let divineButton: UIButton = UIButton()
     
     let resultLabel: UILabel = UILabel()
-    
-    enum Omikuji: Int {
-        case Daikichi = 0
-        case Kichi
-        case Cyukichi
-        case Syokichi
-        case Kyo
-        case Daikyo
-    
-        func getStatus() -> (String, UIColor) {
-            switch self {
-            case .Daikichi:
-                return ("大吉", UIColor.redColor())//表示する文字と色を同時に返す
-            case .Kichi:
-                return ("吉", UIColor.orangeColor())
-            case .Cyukichi:
-                return ("中吉", UIColor.yellowColor())
-            case .Syokichi:
-                return ("小吉", UIColor.greenColor())
-            case .Kyo:
-                return ("凶", UIColor.grayColor())
-            case .Daikyo:
-                return ("大凶", UIColor.blueColor())
-            }
-        }
-    }
+
+    let status: [(weight:Int, fortune:String, color:UIColor)] =
+        [(0,"大吉", UIColor.redColor()), (4,"中吉", UIColor.yellowColor()),
+         (10,"小吉", UIColor.greenColor()), (15,"吉", UIColor.orangeColor()),
+         (18,"凶", UIColor.grayColor()), (19,"大凶", UIColor.blueColor())
+        ]
+    // weightは重みをつけるための値
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,12 +64,14 @@ class ViewController: UIViewController {
     }
     
     func onClickDivineButton(sender: UIButton) {
-        let random = Int(arc4random_uniform(UInt32(Omikuji.Daikyo.rawValue + 1)))
-        if let r = Omikuji(rawValue: random) {
-            let(msg,color) = r.getStatus() //getStatus()で２つの宣言を同時に呼び出す
-            resultLabel.textColor = color
-            resultLabel.text = msg
+        let random = Int(arc4random_uniform(UInt32(status[status.count-1].weight + 1)))
+        
+        var i = 0
+        while i<status.count && random-status[i].weight>0 {
+            i++
         }
+        resultLabel.textColor = status[i].color
+        resultLabel.text = status[i].fortune + String(random)
     }
 }
 
