@@ -71,7 +71,7 @@ class ViewController: UIViewController {
             i++
         }
         resultLabel.textColor = status[i].color
-        resultLabel.text = status[i].fortune + String(random)
+        resultLabel.text = status[i].fortune
     }
 }
 
