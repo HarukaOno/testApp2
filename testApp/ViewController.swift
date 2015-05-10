@@ -15,9 +15,9 @@ class ViewController: UIViewController {
     let resultLabel: UILabel = UILabel()
 
     let status: [(weight:Int, fortune:String, color:UIColor)] =
-        [(0,"大吉", UIColor.redColor()), (4,"中吉", UIColor.yellowColor()),
-         (10,"小吉", UIColor.greenColor()), (15,"吉", UIColor.orangeColor()),
-         (18,"凶", UIColor.grayColor()), (19,"大凶", UIColor.blueColor())
+        [(0,"大吉", UIColor.redColor()), (3,"中吉", UIColor.yellowColor()),
+         (9,"小吉", UIColor.greenColor()), (14,"吉", UIColor.orangeColor()),
+         (17,"凶", UIColor.grayColor()), (18,"大凶", UIColor.blueColor())
         ]
     // weightは重みをつけるための値
 
@@ -71,7 +71,7 @@ class ViewController: UIViewController {
             i++
         }
         resultLabel.textColor = status[i].color
-        resultLabel.text = status[i].fortune
+        resultLabel.text = status[i].fortune + String(random)
     }
 }
 
